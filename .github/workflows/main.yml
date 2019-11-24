@@ -1,0 +1,18 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:      
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Docker Publish
+        uses: HurricanKai/Publish-Docker-Github-Action@master
+        with:
+          name: docker.cloudsmith.io/mrtam/watchmon/sdr-server
+          username: mrtam
+          password: ${{ secrets.CLOUDSMITH_API_KEY }}
+          registry: docker.cloudsmith.io
+          dockerfile: sdr-server.Dockerfile

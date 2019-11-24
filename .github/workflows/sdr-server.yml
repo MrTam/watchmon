@@ -1,6 +1,8 @@
 name: Build SDR Server
 
-on: []
+on:
+  push:
+    paths: sdr-server.Dockerfile
 
 jobs:
   build:

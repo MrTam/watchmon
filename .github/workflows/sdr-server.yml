@@ -1,6 +1,6 @@
-name: CI
+name: Build SDR Server
 
-on: [push]
+on: []
 
 jobs:
   build:

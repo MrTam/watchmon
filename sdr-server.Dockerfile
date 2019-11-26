@@ -12,8 +12,10 @@ RUN cd rtl-sdr && \
     make install
 
 FROM alpine:3.6
-COPY --from=build-env /rtl-sdr/build/install /
+
 RUN apk add --no-cache libusb
+
+COPY --from=build-env /rtl-sdr/build/install /
 
 ENV FREQUENCY=433920000
 ENV SAMPLERATE=250000

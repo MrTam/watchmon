@@ -2,7 +2,7 @@ name: Build SDR Server
 
 on:
   push:
-    paths: sdr-server.Dockerfile
+    paths: server/*
 
 jobs:
   build:
@@ -17,4 +17,4 @@ jobs:
           username: mrtam
           password: ${{ secrets.CLOUDSMITH_API_KEY }}
           registry: docker.cloudsmith.io
-          dockerfile: sdr-server.Dockerfile
+          dockerfile: server/Dockerfile

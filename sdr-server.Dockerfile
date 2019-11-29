@@ -17,7 +17,7 @@ RUN apk add --no-cache libusb py-pip
 COPY --from=build-env /rtl-sdr/build/install /
 
 RUN pip install pyrtlsdr
-COPY server.py ./
+COPY ./server.py ./
 
 EXPOSE 1234
 ENTRYPOINT python server.py

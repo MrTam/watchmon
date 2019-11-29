@@ -2,7 +2,7 @@ name: Build SDR Server
 
 on:
   push:
-    paths: server/*
+    paths: sdr-server.*
 
 jobs:
   build:
@@ -14,7 +14,7 @@ jobs:
         uses: HurricanKai/Publish-Docker-Github-Action@master
         with:
           name: docker.cloudsmith.io/mrtam/watchmon/sdr-server
-          working-directory: server
           username: mrtam
           password: ${{ secrets.CLOUDSMITH_API_KEY }}
           registry: docker.cloudsmith.io
+          dockerfile: sdr-server.Dockerfile

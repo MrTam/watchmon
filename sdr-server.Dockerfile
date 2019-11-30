@@ -13,11 +13,13 @@ RUN cd rtl-sdr && \
 
 FROM alpine:3.6
 
-RUN apk add --no-cache libusb
+RUN apk add --no-cache libusb py-pip && \
+    pip install pyrtlsdr
+
 COPY --from=build-env /rtl-sdr/build/install /
 
-ENV FREQUENCY=433920000
-ENV SAMPLE_RATE=250000
+ENV LISTEN_ADDRESS=0.0.0.0
+ENV LISTEN_PORT=1345
+ENV DEVICE_INDEX=0
 
-EXPOSE 1234
-ENTRYPOINT rtl_tcp -a 0.0.0.0 -f $FREQUENCY -s $SAMPLE_RATE
+ENTRYPOINT python -m rtlsdr.rtlsdrtcp.server -a $LISTEN_ADDRESS -p $LISTEN_PORT -d $DEVICE_INDEX
